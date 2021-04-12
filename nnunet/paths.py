@@ -15,6 +15,10 @@
 import os
 from batchgenerators.utilities.file_and_folder_operations import maybe_mkdir_p, join
 
+os.environ['nnUNet_raw_data_base'] = "F:\\nnUNet-master\\n\\nnUNet_raw_data_base\\nnUNet_raw"
+os.environ['nnUNet_preprocessed'] = "F:\\nnUNet-master\\n\\nnUNet_raw_data_base\\nnUNet_preprocessed"
+os.environ['RESULTS_FOLDER'] = "F:\\nnUNet-master\\n\\nnUNet_raw_data_base\\nnUNet_trained_models"
+
 # do not modify these unless you know what you are doing
 my_output_identifier = "nnUNet"
 default_plans_identifier = "nnUNetPlansv2.1"

@@ -87,11 +87,11 @@ def main():
                              "GPU (via "
                              "CUDA_VISIBLE_DEVICES=X)")
 
-    parser.add_argument("--num_threads_preprocessing", required=False, default=6, type=int, help=
+    parser.add_argument("--num_threads_preprocessing", required=False, default=1, type=int, help=
     "Determines many background processes will be used for data preprocessing. Reduce this if you "
     "run into out of memory (RAM) problems. Default: 6")
 
-    parser.add_argument("--num_threads_nifti_save", required=False, default=2, type=int, help=
+    parser.add_argument("--num_threads_nifti_save", required=False, default=1, type=int, help=
     "Determines many background processes will be used for segmentation export. Reduce this if you "
     "run into out of memory (RAM) problems. Default: 2")
 

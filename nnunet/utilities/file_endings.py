@@ -17,7 +17,7 @@ from batchgenerators.utilities.file_and_folder_operations import *
 
 
 def remove_trailing_slash(filename: str):
-    while filename.endswith('/'):
+    while filename.endswith('\\'):
         filename = filename[:-1]
     return filename
 
