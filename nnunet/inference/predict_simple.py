@@ -22,15 +22,16 @@ from batchgenerators.utilities.file_and_folder_operations import join, isdir
 from nnunet.utilities.task_name_id_conversion import convert_id_to_task_name
 
 
-def main():
+def main(__input_folder = '', __task_name = '', __model = ''):
     parser = argparse.ArgumentParser()
     parser.add_argument("-i", '--input_folder', help="Must contain all modalities for each patient in the correct"
                                                      " order (same as training). Files must be named "
                                                      "CASENAME_XXXX.nii.gz where XXXX is the modality "
-                                                     "identifier (0000, 0001, etc)", required=True)
-    parser.add_argument('-o', "--output_folder", required=True, help="folder for saving predictions")
+                                                     "identifier (0000, 0001, etc)", required=False, 
+                                                     default='F:\\nnUNet-master\\n\\nnUNet_raw_data_base\\nnUNet_raw\\nnUNet_raw_data\\Task005_Prostate\\imagesTr')
+    parser.add_argument('-o', "--output_folder", required=False, help="folder for saving predictions", default= 'OUTPUT_DIRECTORY')
     parser.add_argument('-t', '--task_name', help='task name or task ID, required.',
-                        default=default_plans_identifier, required=True)
+                        default=5, required=False)
 
     parser.add_argument('-tr', '--trainer_class_name',
                         help='Name of the nnUNetTrainer used for 2D U-Net, full resolution 3D U-Net and low resolution '
@@ -121,10 +122,10 @@ def main():
                         help='Predictions are done with mixed precision by default. This improves speed and reduces '
                              'the required vram. If you want to disable mixed precision you can set this flag. Note '
                              'that yhis is not recommended (mixed precision is ~2x faster!)')
-
     args = parser.parse_args()
-    input_folder = args.input_folder
-    output_folder = args.output_folder
+    #input_folder = 'F:\\nnUNet-master\\n\\nnUNet_raw_data_base\\nnUNet_raw\\nnUNet_raw_data\\Task005_Prostate\\imagesTr'
+    input_folder = __input_folder
+    output_folder = 'OUTPUT_DIRECTORY'
     part_id = args.part_id
     num_parts = args.num_parts
     folds = args.folds
@@ -140,11 +141,13 @@ def main():
     overwrite_existing = args.overwrite_existing
     mode = args.mode
     all_in_gpu = args.all_in_gpu
-    model = args.model
+    #model = '3d_fullres'
+    model = __model
     trainer_class_name = args.trainer_class_name
     cascade_trainer_class_name = args.cascade_trainer_class_name
 
-    task_name = args.task_name
+    #task_name = '5'
+    task_name = __task_name
 
     if not task_name.startswith("Task"):
         task_id = int(task_name)
@@ -221,5 +224,5 @@ def main():
                         step_size=step_size, checkpoint_name=args.chk)
 
 
-if __name__ == "__main__":
-    main()
+#if __name__ == "__main__":
+#    main()
